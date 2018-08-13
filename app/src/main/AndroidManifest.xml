@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.elorri.android.importexportvcard"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!--Needed to start the app from the file manager -->
+            <intent-filter>
+                <!-- host, scheme and mimetype attributes are required for the pathPattern attribute to work,
+                we set that to the wildcard to match anything
+                VIEW and DEFAULT both needed to make the app showing as open .vcf candidate-->
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.vcf"
+                    android:scheme="file"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <!--Needed to start the app from a mail attachment-->
+            <intent-filter>
+                <data
+                    android:host="*"
+                    android:mimeType="application/octet-stream"
+                    android:pathPattern=".*\\.vcf"
+                    android:scheme="*"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data  android:mimeType="text/vcard" />
+                <data android:mimeType="text/x-vcard" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.PICK" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<data android:mimeType="text/x-vcard" android:host="com.android.contacts" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+                <!--<data android:mimeType="text/vcard" />-->
+                <!--<data android:mimeType="text/x-vcard" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.android.contact.action.SHARE_VIA" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<data android:mimeType="text/x-vcard" android:host="com.android.contacts" />-->
+            <!--</intent-filter>-->
+        </activity>
+    </application>
+
+</manifest>
